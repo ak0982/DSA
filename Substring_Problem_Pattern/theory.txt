@@ -134,6 +134,56 @@ int lengthOfLongestSubstringTwoDistinct(string s) {
     return d;
 }
 
+int lengthOfLongestSubstringTwoDistinct(string s) {
+    // Step 1: Initialize a map (frequency array) to store the count of each character
+    vector<int> map(128, 0);  // Array to store frequency of characters, for ASCII characters
+
+    int counter = 0;  // Counter to track the number of distinct characters in the window
+    int begin = 0, end = 0;  // Two pointers, one for the start (begin) and one for the end (end)
+    int d = 0;  // Variable to store the length of the longest valid substring
+
+    // Step 2: Traverse the string with the 'end' pointer
+    while (end < s.size()) {
+        // Step 3: Get the character at the 'end' pointer
+        char currentChar = s[end];
+
+        // Step 4: Increment the frequency of the current character
+        map[currentChar]++;
+
+        // Step 5: If this character is new (first time it appears), increase the distinct counter
+        if (map[currentChar] == 1) {
+            counter++;
+        }
+
+        // Step 6: Move the 'end' pointer to expand the window
+        end++;
+
+        // Step 7: Shrink the window if we have more than 2 distinct characters
+        while (counter > 2) {
+            // Get the character at the 'begin' pointer (left end of the window)
+            char charAtBegin = s[begin];
+
+            // Decrease the frequency of the character at 'begin'
+            map[charAtBegin]--;
+
+            // If the character's frequency becomes zero, it means we lost one distinct character
+            if (map[charAtBegin] == 0) {
+                counter--;
+            }
+
+            // Step 8: Move the 'begin' pointer to shrink the window from the left
+            begin++;
+        }
+
+        // Step 9: Update the result with the maximum size of the valid window
+        d = max(d, end - begin);
+    }
+
+    // Step 10: Return the length of the longest valid substring
+    return d;
+}
+
+
 
 Problem 2: Longest Substring Without Repeating Characters
 Problem Statement:
@@ -141,24 +191,69 @@ Given a string s, find the length of the longest substring that contains no repe
 
 Code Explanation:
 int lengthOfLongestSubstring(string s) {
-    vector<int> map(128, 0); // A frequency map for all characters
-    int counter = 0; // Tracks how many characters are repeated
-    int begin = 0, end = 0; // Two pointers defining the sliding window
-    int d = 0; // The length of the longest substring
-
+    vector<int> map(128, 0);   // Initialize a map to store character frequencies
+    int counter = 0, begin = 0, end = 0, d = 0; 
+    
     while (end < s.size()) {
-        // Expand the window by adding the current character
-        if (map[s[end++]]++ > 0) counter++; // Increment counter if this character is repeated
-
-        // Shrink the window to remove duplicates
+        if (map[s[end++]]++ > 0) counter++;  // Character at 'end' is already in the substring, increment counter
         while (counter > 0) {
-            if (map[s[begin++]]-- > 1) counter--; // Decrease frequency, and reduce counter if the character is no longer repeated
+            if (map[s[begin++]]-- > 1) counter--;  // Shrink the window and adjust counter if a character repeats
+        }
+        d = max(d, end - begin);  // Update the length of the longest substring without repeating characters
+    }
+    return d;
+}
+
+
+int lengthOfLongestSubstring(string s) {
+    // Step 1: Initialize a map to store the frequencies of characters in the window
+    vector<int> map(128, 0); // This map will store the count of each character in the range of ASCII characters (128 possible characters)
+
+    // Step 2: Initialize variables
+    int counter = 0;    // To keep track of the number of duplicate characters in the window
+    int begin = 0;      // Left pointer of the sliding window
+    int end = 0;        // Right pointer of the sliding window
+    int d = 0;          // Variable to store the maximum length of the valid substring
+
+    // Step 3: Iterate through the string
+    while (end < s.size()) {
+        // Step 3a: Get the character at the 'end' pointer
+        char currentChar = s[end];
+
+        // Step 3b: Increment the frequency of this character in the map
+        map[currentChar]++;
+
+        // Step 3c: If the character is already in the substring (frequency > 0), we have a duplicate
+        if (map[currentChar] > 1) {
+            // Step 3d: Increment the counter to track how many duplicate characters are in the window
+            counter++;
         }
 
-        // Update the maximum length
-        d = max(d, end - begin);
+        // Step 4: Shrink the window from the left if there are duplicates
+        while (counter > 0) {
+            // Step 4a: Get the character at the 'begin' pointer
+            char leftChar = s[begin];
+
+            // Step 4b: Decrease the frequency of the character at the 'begin' pointer
+            map[leftChar]--;
+
+            // Step 4c: If the frequency of this character drops to 1, it means we no longer have a duplicate, so decrement the counter
+            if (map[leftChar] > 0) {
+                counter--;
+            }
+
+            // Step 4d: Move the 'begin' pointer forward to shrink the window
+            begin++;
+        }
+
+        // Step 5: Update the maximum length of the substring when it's valid (no duplicate characters)
+        d = max(d, end - begin + 1);
+
+        // Step 6: Move the 'end' pointer to the next position to expand the window
+        end++;
     }
 
+    // Step 7: Return the length of the longest substring found
     return d;
 }
 

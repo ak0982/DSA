@@ -1,6 +1,8 @@
 Source: https://leetcode.com/discuss/study-guide/1688903/solved-all-two-pointers-problems-in-100-days
 
 Link1 : https://www.geeksforgeeks.org/floyds-cycle-finding-algorithm/
+Link2 : https://www.naukri.com/code360/library/floyds-cycle-finding-algorithm
+Link3 : https://leetcode.com/discuss/general-discussion/1116359/intro-to-floyds-cycle-detection-algorithm
 
 
 Hello,

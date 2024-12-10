@@ -5,6 +5,92 @@ Link2 : https://www.naukri.com/code360/library/floyds-cycle-finding-algorithm
 Link3 : https://leetcode.com/discuss/general-discussion/1116359/intro-to-floyds-cycle-detection-algorithm
 
 
+ Approach : Dutch National Flag algorithm
+ The Dutch National Flag algorithm, also known as 3-way partitioning, is an algorithm for sorting an array containing three distinct values. The algorithm was designed to solve the problem of sorting an array containing only 0s, 1s, and 2s, which is similar to the problem in the given question.
+
+ The algorithm works by maintaining three pointers: low, mid, and high. The low pointer points to the beginning of the array, the high pointer points to the end of the array, and the mid pointer starts at the beginning of the array and moves through it.
+
+ The idea behind the algorithm is to keep all the 0s before the low pointer, all the 2s after the high pointer, and all the 1s between the low and high pointers. The algorithm moves the mid pointer through the array, comparing the value at each position with 1. If the value is 0, the element is swapped with the element at the low pointer, and the low and mid pointers are incremented. If the value is 2, the element is swapped with the element at the high pointer, and the high pointer is decremented. If the value is 1, the mid pointer is simply incremented.
+
+ The algorithm terminates when the mid pointer crosses the high pointer, indicating that all the elements have been processed and the array is sorted.
+
+ The Dutch National Flag algorithm is called one-pass because it sorts the array in a single pass through the elements. The time complexity of the algorithm is O(n), where n is the size of the array.
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int n = nums.size();
+       int low  = 0 , mid  = 0, high  = n-1;
+       while(mid <= high) {
+        if(nums[mid] == 0) {
+            swap(nums[low], nums[mid]);
+            low++;
+            mid++;
+        } else {
+            if(nums[mid] == 1) {
+                mid++;
+            } else {
+                swap(nums[mid], nums[high]);
+                high--;
+            }
+        }
+
+       }
+        
+      
+        
+    }
+};
+
+
+Intuition :
+The task is to remove the nth node from the end of a singly linked list in one pass. We can achieve this by maintaining a gap of n nodes between two pointers so that, when the first pointer reaches the end, the second pointer is right before the node we want to remove. This approach uses a dummy node to handle edge cases cleanly, such as when the head of the list needs to be removed.
+
+Approach :
+Dummy Node: Introduce a dummy node pointing to the head of the list. This allows us to handle cases where the node to be removed is the head, as the dummy node provides a consistent "previous" node.
+Two Pointers: Use two pointers, first and second, both initially pointing to the dummy node.
+Advance first Pointer: Move the first pointer n + 1 steps ahead of second. This will create a gap of n nodes between first and second.
+Move Both Pointers: Move both pointers one step at a time until first reaches the end of the list. At this point, second is right before the node to remove.
+Remove the Target Node: Adjust the next pointer of second to skip the target node.
+Return the New Head: Return dummy.next as the new head of the list.
+Complexity Analysis :
+Time Complexity: O(sz), where sz is the number of nodes in the list. We make a single pass through the list to find and remove the node.
+Space Complexity: O(1), as we only use a few pointers and no additional space.
+Code Implementations :
+
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* dummy = new ListNode(0);  // Dummy node to simplify edge cases
+        dummy->next = head;
+        
+        ListNode* first = dummy;
+        ListNode* second = dummy;
+        
+        // Move `first` n+1 steps ahead to create the necessary gap
+        for (int i = 0; i <= n; i++) {
+            first = first->next;
+        }
+        
+        // Move both `first` and `second` until `first` reaches the end
+        while (first != nullptr) {
+            first = first->next;
+            second = second->next;
+        }
+        
+        // Remove the nth node from the end
+        second->next = second->next->next;
+        
+        return dummy->next;  // Return the head of the modified list
+    }
+};
+
+
+
+
 Hello,
 I have been solving all two pointers tagged problems in last 3.5 months, and wanted to share my findings/classifications here. If you are preparing for technical interview, two pointers is one of the popular topics that you can't skip :).
 

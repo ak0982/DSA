@@ -67,3 +67,142 @@ int binarySearch(const std::vector<int>& array, std::function<bool(int)> conditi
 
 By mastering this template, binary search will become your go-to tool for efficient problem-solving, transforming frustration into confidence.
 
+
+---
+
+# 🌟 Basic Application
+
+## 🚀 278. **First Bad Version** [Easy]
+
+**Problem:**  
+You are a product manager leading a team to develop a new product. Each version is based on the previous one, so if one version is bad, all versions after it are also bad. You are given an API `bool isBadVersion(version)` that returns whether a version is bad. The task is to find the first bad version.
+
+### Example:
+
+```markdown
+Given n = 5, and version = 4 is the first bad version.
+
+call isBadVersion(3) -> false  
+call isBadVersion(5) -> true  
+call isBadVersion(4) -> true  
+```
+
+Then, **4** is the first bad version.
+
+### Solution (C++):
+
+```cpp
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        int left = 1, right = n;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (isBadVersion(mid)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+};
+```
+
+### Insights:
+- The problem is solved using **binary search**.
+- The key observation is that all versions after a bad version are also bad, so we can narrow down the search range effectively.
+- **Time Complexity:** O(log n), where `n` is the number of versions.
+
+---
+
+## 🧑‍🔬 69. **Sqrt(x)** [Easy]
+
+**Problem:**  
+Implement `int sqrt(int x)`. Compute and return the square root of `x`, where `x` is a non-negative integer. The result should be truncated to an integer.
+
+### Example:
+
+```markdown
+Input: 4  
+Output: 2
+
+Input: 8  
+Output: 2
+```
+
+### Solution (C++):
+
+```cpp
+class Solution {
+public:
+    int mySqrt(int x) {
+        int left = 0, right = x + 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (mid * mid > x) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left - 1;
+    }
+};
+```
+
+### Insights:
+- This is a **binary search** problem where we need to find the largest integer `k` such that `k^2 <= x`.
+- **Time Complexity:** O(log x), where `x` is the number for which we are calculating the square root.
+
+---
+
+## 🔍 35. **Search Insert Position** [Easy]
+
+**Problem:**  
+Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be inserted in order. No duplicates are allowed.
+
+### Example:
+
+```markdown
+Input: [1, 3, 5, 6], 5  
+Output: 2
+
+Input: [1, 3, 5, 6], 2  
+Output: 1
+```
+
+### Solution (C++):
+
+```cpp
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int left = 0, right = nums.size();
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+};
+```
+
+### Insights:
+- This problem is another **binary search** application to find the appropriate index where the target should be inserted.
+- **Time Complexity:** O(log n), where `n` is the size of the array.
+
+---
+
+### 🔑 Summary:
+- All three problems leverage **binary search** to efficiently find a solution.
+- The first problem is about finding the first "bad version" in a sequence, while the other two deal with searching for an element or a position in a sorted array.
+- Binary search allows us to reduce the time complexity to **O(log n)** in all these problems, making them much more efficient than a linear search approach.
+
+---
+
+Let me know if you need any further modifications or explanations!

@@ -1,7 +1,7 @@
 https://leetcode.com/discuss/study-guide/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
 
 >> Intro
-Binary Search is quite easy to understand conceptually. Basically, it splits the search space into two   halves and only keep the half that probably has the search target and throw away the other half that would   not possibly have the answer. In this manner, we reduce the search space to half the size at every step, until we find the target.   Binary Search helps us reduce the search time from linear O(n) to logarithmic O(log n). But when it comes to implementation,   it's rather difficult to write a bug-free code in just a few minutes. Some of the most common problems include:
+Binary Search is quite easy to understand conceptually. Basically, it splits the search space into two halves and only keep the half that probably has the search target and throw away the other half that would not possibly have the answer. In this manner, we reduce the search space to half the size at every step, until we find the target. Binary Search helps us reduce the search time from linear O(n) to logarithmic O(log n). But when it comes to implementation, it's rather difficult to write a bug-free code in just a few minutes. Some of the most common problems include:
 
 
 When to exit the loop? Should we use left < right or left <= right as the while loop condition?

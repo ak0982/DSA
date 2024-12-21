@@ -1,33 +1,33 @@
-Summery:
+# 🌟 **Important Conclusion** 🌟
 
-## 🌟 **Important Conclusions** 🌟
+### 🔹 **Nearest Smaller or Larger Element Tips**:
 
-### **Nearest Elements and Stack Usage**
+- **Nearest Smaller to Left** → 🟩 *Use an Increasing Stack*  
+  📌 *Start putting the elements from the **right***  
+- **Nearest Larger to Left** → 🟦 *Use a Decreasing Stack*  
+  📌 *Start putting the elements from the **right***  
+- **Nearest Smaller to Right** → 🟨 *Use an Increasing Stack*  
+  📌 *Start putting the elements from the **left***  
+- **Nearest Larger to Right** → 🟥 *Use a Decreasing Stack*  
+  📌 *Start putting the elements from the **left***
 
-- **Nearest Smaller to Left**:
-  - [34mUse an “Increasing Stack”[0m.
-  - [32mStart putting the elements from the **right**.[0m
+---
 
-- **Nearest Larger to Left**:
-  - [33mUse a “Decreasing Stack”[0m.
-  - [35mStart putting the elements from the **right**.[0m
+### 📊 **Detailed Problem Breakdown**
 
-- **Nearest Smaller to Right**:
-  - [34mUse an “Increasing Stack”[0m.
-  - [32mStart putting the elements from the **left**.[0m
+| 🛠 **Problem**      | 🔄 **Stack Type**            | 🔢 **Operator in while loop** | 📝 **Assignment Position**  |
+|---------------------|------------------------------|------------------------------|-----------------------------|
+| **Next Greater**    | Decreasing (*equal allowed*) | `stackTop < current`         | Inside while loop           |
+| **Previous Greater**| Decreasing (*strict*)        | `stackTop <= current`        | Outside while loop          |
+| **Next Smaller**    | Increasing (*equal allowed*) | `stackTop > current`         | Inside while loop           |
+| **Previous Smaller**| Increasing (*strict*)        | `stackTop >= current`        | Outside while loop          |
 
-- **Nearest Larger to Right**:
-  - [33mUse a “Decreasing Stack”[0m.
-  - [35mStart putting the elements from the **left**.[0m
+---
 
-### **Stack Operation Summary Table**
+### 💡 **Insights**:
 
-| 🔍 **Problem**         | 🔎 **Stack Type**             | 🎮 **Operator in While Loop** | 🌒 **Assignment Position** |
-|------------------|----------------------------|--------------------------|----------------------|
-| [31m**Next Greater**[0m      | [33mDecreasing (Equal Allowed)[0m | [36m`stackTop < current`[0m | [32mInside While Loop[0m    |
-| [31m**Previous Greater**[0m  | [33mDecreasing (Strict)[0m        | [36m`stackTop <= current`[0m | [32mOutside While Loop[0m   |
-| [31m**Next Smaller**[0m      | [34mIncreasing (Equal Allowed)[0m | [36m`stackTop > current`[0m  | [32mInside While Loop[0m    |
-| [31m**Previous Smaller**[0m  | [34mIncreasing (Strict)[0m        | [36m`stackTop >= current`[0m | [32mOutside While Loop[0m   |
+1. Using **increasing** or **decreasing stacks** helps optimize the search for nearest smaller or larger elements.
+2. **Assignment position** depends on whether strict inequality is applied, ensuring accuracy during computation.
 
 
 What is a Monotonic Stack?

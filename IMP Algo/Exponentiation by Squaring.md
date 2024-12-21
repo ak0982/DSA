@@ -61,8 +61,6 @@ int main() {
 
 ---
 
-
-```markdown
 ## Exponentiation by Squaring Algorithm 🔢
 
 The **Exponentiation by Squaring** algorithm is a highly efficient way to calculate powers of a number. By utilizing bit manipulation, it reduces the time complexity from **O(n)** to **O(log n)**, where **n** is the exponent.
@@ -114,7 +112,7 @@ int main() {
     
     return 0;
 }
-```
+
 
 ### Key Points 🧠:
 - **Exponentiation by Squaring** significantly reduces the number of multiplications needed to compute \( a^b \).

@@ -113,7 +113,7 @@ int main() {
     return 0;
 }
 
-
+```
 ### Key Points 🧠:
 - **Exponentiation by Squaring** significantly reduces the number of multiplications needed to compute \( a^b \).
 - The algorithm squares the base and halves the exponent in each iteration, resulting in logarithmic time complexity.
